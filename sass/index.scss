@@ -1,0 +1,141 @@
+@import "demoVariable";
+
+/*清除浮动*/
+.clearfix:after { content: "-"; display: block; height: 0; clear: both; visibility: hidden; } /*用于元素换行*/
+.clearfix { zoom: 1; display: inline-block; _height: 1px }
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+
+
+@each $key,$value in $colorBlockMap{
+  .cbBg#{$key}{
+    background: $value;
+    @if($key == colorBlock19){
+      color: #000000 !important;
+    }@else if($key == colorBlock20){
+      color: #000000 !important;;
+    }
+  }
+}
+
+code {
+  background: #000000;
+  color: #ffffff;
+  @include radius(3);
+  @include padding(center,5);
+}
+
+.title{
+  font-size: 16px;
+  font-weight: bold;
+  margin: {
+    top:5px;
+    bottom: 5px;
+  };
+}
+
+div{
+  font-size: 14px;
+  color: #333333;
+  &.exContent {
+    width: 98%;
+    box-sizing: border-box;
+    background: #eeeeee;
+    vertical-align: top;
+    @include margin(center,10);
+    @include padding(center,10);
+    @include boder(1,'');
+    @include radius(6);
+
+    .colorBlockContent{
+      background: #ffffff;
+      padding: 5px;
+      @include boder(1,'');
+      @include radius(4);
+
+      .colorBlock{
+        width: 100px;
+        height: 100px;
+        display: inline-block;
+        margin:{
+          top:10px;
+          right: 10px;
+        }
+
+        &top {
+          height: 50px;
+          color: #eeeeee;
+          @include position(center,middle,50);
+        }
+
+        &bottom{
+          height:50px;
+          color: #eeeeee;
+          @include position(center,middle,50);
+        }
+      }
+    }
+
+    .exBoxTop {
+      width: 98%;
+      background: #ffffff;
+      @include padding(center,5);
+      @include boder(1,'');
+      @include radius(4);
+
+      .exInputText{
+        width: 200px;
+        height: 28px;
+        color: #333;
+        @include boder(1, #2ecc71);
+        @include padding(left,5);
+        @include position($cloumn:left,$row:middle,$h:28);
+        &:focus{
+          @include shadow(5,#27ae60);
+        }
+      }
+
+      .exInputTextRadius{
+        width: 200px;
+        height: 28px;
+        color: #333;
+        @include radius(6);
+        @include boder(2, #2ecc71);
+        @include padding(left,5);
+        @include position($cloumn:left,$row:middle,$h:28);
+        &:focus{
+          @include shadow(5,#27ae60);
+        }
+      }
+
+      .exInputButtonRadius {
+        display: inline-block;
+        width: 100px;
+        height: 28px;
+        color: #eee;
+        @include radius(4);
+        @include position(center,middle,28);
+        @include gradient(top,#1abc9c,#16a085);
+        &:hover{
+          color: #ffffff;
+          cursor: pointer;
+          @include gradient(top, #1ebc9a, #21a083);
+          @include shadow(3,'');
+        }
+      }
+    }
+
+    .exBoxBottom{
+      /*float: right;*/
+      width: 98%;
+      /*box-sizing: border-box;*/
+      background: #000;
+      color: #fff;
+      @include padding(center,5);
+      @include margin(top,5);
+      @include boder(1,'');
+      @include radius(6);
+    }
+  }
+
+}

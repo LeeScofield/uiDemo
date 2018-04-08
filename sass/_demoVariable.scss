@@ -1,0 +1,101 @@
+//色块
+$colorBlockMap:(
+  colorBlock1:#1abc9c,
+  colorBlock2:#16a085,
+  colorBlock3:#2ecc71,
+  colorBlock4:#27ae60,
+  colorBlock5:#3498db,
+  colorBlock6:#2980b9,
+  colorBlock7:#9b59b6,
+  colorBlock8:#8e44ad,
+  colorBlock9:#34495e,
+  colorBlock10:#2c3e50,
+  colorBlock11:#f1c40f,
+  colorBlock12:#f39c12,
+  colorBlock13:#e67e22,
+  colorBlock14:#d35400,
+  colorBlock15:#e74c3c,
+  colorBlock16:#c0392b,
+  colorBlock17:#95a5a6,
+  colorBlock18:#7f8c8d,
+  colorBlock19:#ecf0f1,
+  colorBlock20:#bdc3c7
+);
+
+//背景颜色渐变,$d（top表从上到下，left表示从左到右，参考：http://www.colorzilla.com/gradient-editor/）,$f起始，$t结束
+@mixin gradient($d,$f,$t){
+  background: $f; /* Old browsers */
+  background: -moz-linear-gradient($d, $f 0%, $t 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient($d,  $f 0%,$t 100%); /* Chrome10-25,Safari5.1-6 */
+  @if($d == 'top'){
+    background: linear-gradient(to bottom,  $f 0%,$t 100%);
+  }@else{
+    background: linear-gradient(to right,  $f 0%,$t 100%);
+  }
+}
+
+//$d值：left,right,top,bottom,center,side表示左\右\上\下\中\二边，$v表示值
+@mixin padding($d,$v){
+  @if($d != 'center' and $d != 'side'){
+    padding-#{$d}: #{$v}px;
+  }@else if($d == 'side'){
+    padding: #{$v}px auto;
+  }@else {
+    padding: #{$v}px;
+  }
+}
+
+@mixin margin($d,$v){
+  @if($d != 'center' and $d != 'side'){
+    margin-#{$d}: #{$v}px;
+  }@else if($d == 'side'){
+    margin: #{$v}px auto;
+  }@else {
+    margin: #{$v}px;
+  }
+}
+
+//圆角
+@mixin radius($r){
+  -moz-border-radius:#{$r}px;
+  -webkit-border-radius:#{$r}px;
+  -o-border-radius:#{$r}px;
+  border-radius:#{$r}px;
+}
+
+//位置
+@mixin position($cloumn,$row,$h){
+  text-align: $cloumn;
+  vertical-align: $row;
+  @if ($h != ''){
+    line-height: #{$h}px;
+  }
+}
+
+//阴影默认颜色
+$default_shadowColor:rgba(0,0,0,0.4);
+//阴影
+@mixin shadow($size,$color){
+  @if ($color == ''){
+    -moz-box-shadow:0 0 #{$size}px $default_shadowColor;
+    -webkit-box-shadow:0 0 #{$size}px $default_shadowColor;
+    -o-box-shadow:0 0 #{$size}px $default_shadowColor;
+    box-shadow: 0 0 #{$size}px $default_shadowColor;
+  }@else {
+    -moz-box-shadow:0 0 #{$size}px $color;
+    -webkit-box-shadow:0 0 #{$size}px $color;
+    -o-box-shadow:0 0 #{$size}px $color;
+    box-shadow: 0 0 #{$size}px $color;
+  }
+}
+
+//box边框默认颜色
+$default_borderColor:#cccccc;
+//border
+@mixin boder($px,$color){
+  @if ($color == ''){
+    border:#{$px}px solid $default_borderColor;
+  }@else {
+    border:#{$px}px solid $color;
+  }
+}
